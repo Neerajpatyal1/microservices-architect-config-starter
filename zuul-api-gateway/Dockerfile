@@ -1,10 +1,10 @@
 FROM maven  as build
-WORDIR /app
+WORKDIR /app
 COPY  . .
 RUN mvn install 
 
 FROM  openjdk:11.0.10-jre
-WORDIR /app
+WORKDIR /app
 COPY --from=build  /app/zuul-0.0.1-SNAPSHOT.jar /app
 EXPOSE 9999
 CMD [ "java","-jar","zuul-0.0.1-SNAPSHOT.jar"]
